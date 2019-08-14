@@ -6,10 +6,13 @@
 <head runat="server">
     <title></title>
 </head>
-<body>
-    <form id="form1" runat="server">
+<body>    
+    <form id="form1" runat="server">   
 
-   <div><label id="lblGridHeader" title="My Dealer Tracker" style="font-size:large"></label></div>
+    <div style="padding-bottom:10px">
+        <asp:Label ID="lblGridHeader" runat="server" Text="My Dealer Tracker" style="font-size:large;font-weight:bold"></asp:Label>        
+    </div>
+
     <div>
         <asp:GridView ID="gvDealerTrack" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvDealerTrack_RowDataBound">
             <Columns>
@@ -21,6 +24,12 @@
                 <asp:BoundField DataField="Date" HeaderText="Date" DataFormatString="{0:MM/dd/yyyy}" />
             </Columns>
         </asp:GridView>    
+    </div>
+    
+
+    <div style="padding-top:30px">
+        <asp:Label ID ="lblMostCarSell" runat="server" Text ="Vehicle sold most often" style="font-size:large; font-weight:bold; padding-right:20px"></asp:Label>
+        <asp:TextBox ID="txtMostCarSell" runat="server" Enabled ="false" Width="250px"></asp:TextBox>
     </div>
     </form>
 </body>

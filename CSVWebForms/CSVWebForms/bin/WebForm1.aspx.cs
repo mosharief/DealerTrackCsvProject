@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Globalization;
-using System.Threading;
+
 
 namespace CSVWebForms
 {
@@ -15,19 +11,14 @@ namespace CSVWebForms
         {
             var path = Server.MapPath(@"~/Dealertrack-CSV-Example.csv");
             var data = CSVHelperClass.Read<DealerTrack>(new CsvSource(path)).ToList();
-
-            gvDealerTrack.DataSource = null;
+            
             gvDealerTrack.DataSource = data;
             gvDealerTrack.DataBind();
+
+            var item = data.GroupBy(x => x.Vehicle).OrderByDescending(i => i.Count()).First().Key;
+            txtMostCarSell.Text = item;
         }
 
-        //protected override void InitializeCulture()
-        //{
-        //    CultureInfo c1 = new CultureInfo("en-US");
-        //    c1.NumberFormat.CurrencySymbol = "U+0024";
-        //    Thread.CurrentThread.CurrentCulture = c1;
-        //    base.InitializeCulture();
-        //}
 
         protected void gvDealerTrack_RowDataBound(object sender, GridViewRowEventArgs e)
         {
